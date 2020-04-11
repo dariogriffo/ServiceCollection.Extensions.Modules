@@ -99,11 +99,11 @@ namespace MyParameterizedModulesTest
 
     public class ParameterizedModule : Module
     {
-		private readonly string _url;
-		public ParameterizedModule(string url)
-		{
-			_url = _url;
-		}
+        private readonly string _url;
+        public ParameterizedModule(string url)
+        {
+        	_url = _url;
+        }
 		
         protected override void Load(IServiceCollection services)
         {
@@ -113,8 +113,7 @@ namespace MyParameterizedModulesTest
     }
 
     // and later on
-	
-	services.RegisterModule(new ParameterizedModule("https://google.com"));
+    services.RegisterModule(new ParameterizedModule("https://google.com"));
 }
 ```
 
