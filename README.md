@@ -62,7 +62,7 @@ public class Startup
 You can register modules inside modules....
 
 ```
-namespace MyFanceNestedModulesTest
+namespace MyFancyNestedModulesTest
 {
     using Microsoft.Extensions.DependencyInjection;
     using ServiceCollection.Extensions.Modules;
@@ -85,6 +85,36 @@ namespace MyFanceNestedModulesTest
             // MORE FANCY REGISTRATIONS HERE
          }
     }
+}
+```
+
+# Parameterized Modules
+You can register instances of modules if you need some parameter....
+
+```
+namespace MyParameterizedModulesTest
+{
+    using Microsoft.Extensions.DependencyInjection;
+    using ServiceCollection.Extensions.Modules;
+
+    public class ParameterizedModule : Module
+    {
+		private readonly string _url;
+		public ParameterizedModule(string url)
+		{
+			_url = _url;
+		}
+		
+        protected override void Load(IServiceCollection services)
+        {
+            base.Load(services); 
+			// SOME FANCY REGISTRATIONS HERE using _url
+        }
+    }
+
+    // and later on
+	
+	services.RegisterModule(new ParameterizedModule("https://google.com"));
 }
 ```
 
