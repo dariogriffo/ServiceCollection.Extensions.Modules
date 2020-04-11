@@ -100,8 +100,8 @@ namespace MyParameterizedModulesTest
     public class ParameterizedModule : Module
     {
         private readonly string _url;
-        
-		public ParameterizedModule(string url)
+
+        public ParameterizedModule(string url)
         {
         	_url = _url;
         }
