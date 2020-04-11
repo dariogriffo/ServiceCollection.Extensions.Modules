@@ -100,7 +100,8 @@ namespace MyParameterizedModulesTest
     public class ParameterizedModule : Module
     {
         private readonly string _url;
-        public ParameterizedModule(string url)
+        
+		public ParameterizedModule(string url)
         {
         	_url = _url;
         }
@@ -108,7 +109,7 @@ namespace MyParameterizedModulesTest
         protected override void Load(IServiceCollection services)
         {
             base.Load(services); 
-			// SOME FANCY REGISTRATIONS HERE using _url
+            // SOME FANCY REGISTRATIONS HERE using _url
         }
     }
 
