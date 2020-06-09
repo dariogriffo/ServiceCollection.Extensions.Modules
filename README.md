@@ -117,9 +117,3 @@ namespace MyParameterizedModulesTest
     services.RegisterModule(new ParameterizedModule("https://google.com"));
 }
 ```
-
-**IMPORTANT**
-
-These modules are implemented in a way that the same module won't be loaded 2 times. Yes that can useful or dangerous.
-
-So if you ***REALLY*** need that functionality you might be thinking on using nested modules with some common registrations and then the differences in each module.
