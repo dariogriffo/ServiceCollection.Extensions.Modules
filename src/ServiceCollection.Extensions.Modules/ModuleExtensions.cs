@@ -7,14 +7,14 @@
         public static IServiceCollection RegisterModule<T>(this IServiceCollection services, T module)
             where T : Module
         {
-            return module.Loader(services, module);
+            return module.Loader<T>(services);
         }
 
         public static IServiceCollection RegisterModule<T>(this IServiceCollection services)
             where T : Module, new()
         {
             var module = new T();
-            return module.Loader(services, module);
+            return module.Loader<T>(services);
         }
     }
 }

@@ -12,7 +12,7 @@
         {
         }
 
-        internal IServiceCollection Loader<T>(IServiceCollection services, T module)
+        internal IServiceCollection Loader<T>(IServiceCollection services)
             where T : Module
         {
             Load(services);
