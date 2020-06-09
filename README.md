@@ -117,3 +117,6 @@ namespace MyParameterizedModulesTest
     services.RegisterModule(new ParameterizedModule("https://google.com"));
 }
 ```
+  
+  
+Logo Provided by [Vecteezy](https://vecteezy.com)
