@@ -1,4 +1,6 @@
-﻿namespace ServiceCollection.Extensions.Modules.UnitTests
+﻿using ServiceCollection.Extensions.Modules.UnitTests.Implementations;
+
+namespace ServiceCollection.Extensions.Modules.UnitTests
 {
     using System;
     using Microsoft.Extensions.Logging;
@@ -23,6 +25,30 @@
             using var scope1 = serviceCollection.BuildServiceProvider();
             var services = scope1.GetRequiredService<IEnumerable<IService>>();
             services.Count().Should().Be(2);
+        }
+
+        [Test]
+        public void RegisterModule_WhenAFactoryFunctionIsInvoked_AModuleIsRegistered()
+        {
+	        var serviceCollection = new ServiceCollection();
+	        if (new Random().Next() % 2 == 0)
+	        {
+		        serviceCollection.AddSingleton<IService, ServiceImpl2>();
+	        }
+	        else
+	        {
+		        serviceCollection.AddSingleton<IService, ServiceImpl1>();
+            }
+
+	        serviceCollection.RegisterModule((collection) =>
+	        {
+		        var impl = collection.BuildServiceProvider().GetRequiredService<IService>();
+                return new ParameterizedModule(impl);
+	        });
+
+	        using var scope1 = serviceCollection.BuildServiceProvider();
+	        var service = scope1.GetRequiredService<IService2>();
+	        service.Message().Should().Be(scope1.GetRequiredService<IService>().Message());
         }
 
         [Test]

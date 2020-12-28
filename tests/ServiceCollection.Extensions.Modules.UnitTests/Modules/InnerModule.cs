@@ -1,4 +1,6 @@
-﻿namespace ServiceCollection.Extensions.Modules.UnitTests.Modules
+﻿using Microsoft.Extensions.Configuration;
+
+namespace ServiceCollection.Extensions.Modules.UnitTests.Modules
 {
     using Microsoft.Extensions.DependencyInjection;
     using ServiceCollection.Extensions.Modules.UnitTests.Implementations;

@@ -1,44 +1,52 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <Id>ServiceCollection.Extensions.Modules</Id>
-    <Title>Modules for Microsoft.Extensions.DependencyInjection</Title>
-    <Version>2.0.0</Version>
+	<PropertyGroup>
+		<Id>ServiceCollection.Extensions.Modules</Id>
+		<Title>Modules for Microsoft.Extensions.DependencyInjection</Title>
+		<Version>2.3.0</Version>
     <Authors>https://github.com/griffo-io</Authors>
-    <Company>https://github.com/griffo-io</Company>
-    <Product>ServiceCollection.Extensions.Modules</Product>
-    <Copyright>https://github.com/griffo-io</Copyright>
-    <LicenseUrl>https://raw.githubusercontent.com/griffo-io/ServiceCollection.Extensions.Modules/master/LICENSE</LicenseUrl>
-    <PackageProjectUrl>https://github.com/griffo-io/ServiceCollection.Extensions.Modules</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/griffo-io/ServiceCollection.Extensions.Modules</RepositoryUrl>
-    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
-    <ProjectUrl>https://github.com/griffo-io/ServiceCollection.Extensions.Modules</ProjectUrl>
-    <Icon>images\icon.png</Icon>
-    <Description>Modules for Microsoft.Extensions.DependencyInjection</Description>
-  </PropertyGroup>
+		<Company>https://github.com/griffo-io</Company>
+		<Product>ServiceCollection.Extensions.Modules</Product>
+		<Copyright>https://github.com/griffo-io</Copyright>
+		<LicenseUrl>https://raw.githubusercontent.com/griffo-io/ServiceCollection.Extensions.Modules/master/LICENSE</LicenseUrl>
+		<PackageProjectUrl>https://github.com/griffo-io/ServiceCollection.Extensions.Modules</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/griffo-io/ServiceCollection.Extensions.Modules</RepositoryUrl>
+		<RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+		<ProjectUrl>https://github.com/griffo-io/ServiceCollection.Extensions.Modules</ProjectUrl>
+		<Icon>images\icon.png</Icon>
+		<Description>Modules for Microsoft.Extensions.DependencyInjection</Description>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <PackageIcon>images\icon.png</PackageIcon>
-    <PackageTags>ServiceCollection, Dependency Injection, Modules</PackageTags>
-    <PackageReleaseNotes>Removing not-allowed duplicates functionality. Fix issue with services already registered not present.</PackageReleaseNotes>
-    <PackageLicenseFile>license\license.txt</PackageLicenseFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Include="license\license.txt" Pack="true" PackagePath="license">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="images\icon.png" Pack="true" PackagePath="images">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<PropertyGroup>
+		<PackageIcon>images\icon.png</PackageIcon>
+		<PackageTags>ServiceCollection, Dependency Injection, Modules</PackageTags>
+		<PackageReleaseNotes>Allow modules to be registered with a function</PackageReleaseNotes>
+		<PackageLicenseFile>license\license.txt</PackageLicenseFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="license\license.txt" Pack="true" PackagePath="license">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Include="images\icon.png" Pack="true" PackagePath="images">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.4" />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[2,3)" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[3,5)" />
+	</ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[5,6)" />
   </ItemGroup>
 
 </Project>

@@ -118,5 +118,41 @@ namespace MyParameterizedModulesTest
 }
 ```
   
-  
+ 
+
+# Modules registration via Action
+An action can be provided to register modules....
+
+```
+namespace MyParameterizedModulesTest
+{
+    using Microsoft.Extensions.DependencyInjection;
+    using ServiceCollection.Extensions.Modules;
+
+    public class ParameterizedModule : Module
+    {
+        private readonly string _url;
+
+        public ParameterizedModule(string url)
+        {
+        	_url = _url;
+        }
+		
+        protected override void Load(IServiceCollection services)
+        {
+            base.Load(services); 
+            // SOME FANCY REGISTRATIONS HERE using _url
+        }
+    }
+
+    // and later on
+    services.RegisterModule(
+		(collection) =>
+	        {
+		        var configuration = collection.BuildServiceProvider().GetRequiredService<IConfiguration>();
+                return new ParameterizedModule(configuration["ApiUrl"]);
+	        });
+}
+```
+
 Logo Provided by [Vecteezy](https://vecteezy.com)
