@@ -149,8 +149,9 @@ namespace MyParameterizedModulesTest
     services.RegisterModule(
 		(collection) =>
 	        {
-		        var configuration = collection.BuildServiceProvider().GetRequiredService<IConfiguration>();
-                return new ParameterizedModule(configuration["ApiUrl"]);
+	            var configuration = 
+		    collection.BuildServiceProvider().GetRequiredService<IConfiguration>();
+                    return new ParameterizedModule(configuration["ApiUrl"]);
 	        });
 }
 ```
