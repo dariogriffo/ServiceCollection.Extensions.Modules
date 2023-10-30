@@ -64,5 +64,13 @@ namespace ServiceCollection.Extensions.Modules.UnitTests
             Action act = ()=> serviceCollection.RegisterModule<TestModule>();
             act.Should().NotThrow();
         }
+
+        [Test]
+        public void RegisterModule_WhenCalledTwice_RegistrationHappensOnlyOnce()
+        {
+	        var serviceCollection = new ServiceCollection();
+	        serviceCollection.RegisterModule<SimpleModule>().RegisterModule<SimpleModule>();
+	        serviceCollection.Count.Should().Be(1);
+        }
     }
 }

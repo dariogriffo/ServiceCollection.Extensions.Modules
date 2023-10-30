@@ -10,7 +10,7 @@
         protected override void Load(IServiceCollection services)
         {
             base.Load(services);
-            var _ = (services.FirstOrDefault(x => x.ServiceType == typeof(ILoggerFactory)) ?? throw new ApplicationException());
+            _ = (services.FirstOrDefault(x => x.ServiceType == typeof(ILoggerFactory)) ?? throw new ApplicationException());
         }
     }
 }

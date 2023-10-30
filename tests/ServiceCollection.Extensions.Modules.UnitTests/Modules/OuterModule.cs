@@ -10,7 +10,7 @@
         {
             base.Load(services);
             services.RegisterModule<InnerModule>();
-            services.AddSingleton<IService, ServiceImpl2>();
+            services.AddSingleton<IService, ServiceImpl3>();
         }
     }
 }
