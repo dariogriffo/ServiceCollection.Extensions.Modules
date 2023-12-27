@@ -16,7 +16,7 @@ Here is a naive, simple implementation that has been working for me.
 
 1. Inherit from ServiceCollection.Extensions.Modules.Module class
   
-```
+```csharp
 namespace MyFanceModulesTest
 {
     using Microsoft.Extensions.DependencyInjection;
@@ -35,7 +35,7 @@ namespace MyFanceModulesTest
 
 2. Register your module
 
-```
+```csharp
 public class Startup
 {
     public Startup(IConfiguration configuration)
@@ -61,7 +61,7 @@ public class Startup
 # Nested Modules
 You can register modules inside modules....
 
-```
+```csharp
 namespace MyFancyNestedModulesTest
 {
     using Microsoft.Extensions.DependencyInjection;
@@ -91,7 +91,7 @@ namespace MyFancyNestedModulesTest
 # Parameterized Modules
 You can register instances of modules if you need some parameter....
 
-```
+```csharp
 namespace MyParameterizedModulesTest
 {
     using Microsoft.Extensions.DependencyInjection;
@@ -123,7 +123,7 @@ namespace MyParameterizedModulesTest
 # Modules registration via Action
 An action can be provided to register modules....
 
-```
+```csharp
 namespace MyParameterizedModulesTest
 {
     using Microsoft.Extensions.DependencyInjection;
@@ -149,8 +149,9 @@ namespace MyParameterizedModulesTest
     services.RegisterModule(
 		(collection) =>
 	        {
-		        var configuration = collection.BuildServiceProvider().GetRequiredService<IConfiguration>();
-                return new ParameterizedModule(configuration["ApiUrl"]);
+	            var configuration = 
+		    collection.BuildServiceProvider().GetRequiredService<IConfiguration>();
+                    return new ParameterizedModule(configuration["ApiUrl"]);
 	        });
 }
 ```
