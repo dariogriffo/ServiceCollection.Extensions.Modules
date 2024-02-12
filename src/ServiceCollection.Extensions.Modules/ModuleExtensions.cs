@@ -9,21 +9,22 @@ namespace ServiceCollection.Extensions.Modules
         public static IServiceCollection RegisterModule<T>(this IServiceCollection services, T module)
             where T : Module
         {
-            return module.Loader<T>(services);
+            return module.Loader(services);
         }
 
         public static IServiceCollection RegisterModule<T>(this IServiceCollection services)
-	        where T : Module, new()
+            where T : Module, new()
         {
-	        var module = new T();
-	        return module.Loader<T>(services);
+            var module = new T();
+            return module.Loader(services);
         }
 
-        public static IServiceCollection RegisterModule<T>(this IServiceCollection services, Func<IServiceCollection,T> factory)
-	        where T : Module
+        public static IServiceCollection RegisterModule<T>(this IServiceCollection services,
+            Func<IServiceCollection, T> factory)
+            where T : Module
         {
-	        var module = factory(services);
-	        return module.Loader<T>(services);
+            var module = factory(services);
+            return module.Loader(services);
         }
     }
 }

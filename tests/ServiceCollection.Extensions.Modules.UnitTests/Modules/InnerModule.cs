@@ -10,7 +10,7 @@ namespace ServiceCollection.Extensions.Modules.UnitTests.Modules
     {
         protected override void Load(IServiceCollection services)
         {
-            base.Load(services); 
+            base.Load(services);
             services.AddSingleton<IService, ServiceImpl2>();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace ServiceCollection.Extensions.Modules
@@ -7,8 +8,9 @@ namespace ServiceCollection.Extensions.Modules
 
     public abstract class Module
     {
-        private static HashSet<Type> _loaded = new HashSet<Type>();
-        
+        private static readonly ConcurrentDictionary<Type, HashSet<int>> Loaded =
+            new ConcurrentDictionary<Type, HashSet<int>>();
+
         protected internal Module()
         {
         }
@@ -17,14 +19,19 @@ namespace ServiceCollection.Extensions.Modules
         {
         }
 
-        internal IServiceCollection Loader<T>(IServiceCollection services)
-            where T : Module
+        internal IServiceCollection Loader(IServiceCollection services)
         {
-            if (!_loaded.Contains(GetType()))
+            if (!Loaded.TryGetValue(GetType(), out var s))
             {
                 Load(services);
-                _loaded.Add(GetType());
+                Loaded.TryAdd(GetType(), new HashSet<int>() { services.GetHashCode() });
             }
+            else if (!s.Contains(services.GetHashCode()))
+            {
+                Load(services);
+                s.Add(services.GetHashCode());
+            }
+
             return services;
         }
     }

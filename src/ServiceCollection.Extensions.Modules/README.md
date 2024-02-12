@@ -1,7 +1,3 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/fe8xe21h78b1c6ij?svg=true)](https://ci.appveyor.com/project/dariogriffo/servicecollection-extensions-modules)
-[![NuGet](https://img.shields.io/nuget/v/ServiceCollection.Extensions.Modules.svg?style=flat)](https://www.nuget.org/packages/ServiceCollection.Extensions.Modules/) 
-[![GitHub license](https://img.shields.io/github/license/griffo-io/ServiceCollection.Extensions.Modules.svg)](https://raw.githubusercontent.com/griffo-io/ServiceCollection.Extensions.Modules/master/LICENSE)
-
 [![N|Solid](https://avatars2.githubusercontent.com/u/39886363?s=200&v=4)](https://github.com/griffo-io/ServiceCollection.Extensions.Modules)
 
 
@@ -148,11 +144,12 @@ namespace MyParameterizedModulesTest
     }
 
     // and later on
-    services.RegisterModule(
-		(collection) =>
+    services
+        .RegisterModule(
+		(c) =>
 	        {
-                var configuration = collection.BuildServiceProvider().GetRequiredService<IConfiguration>();
-                return new ParameterizedModule(configuration["ApiUrl"]);
+                    var configuration = c.BuildServiceProvider().GetRequiredService<IConfiguration>();
+                    return new ParameterizedModule(configuration["ApiUrl"]);
 	        });
 }
 ```

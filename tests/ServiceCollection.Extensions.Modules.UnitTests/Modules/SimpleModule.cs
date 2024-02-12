@@ -8,7 +8,7 @@ public class SimpleModule : Module
 {
     protected override void Load(IServiceCollection services)
     {
-        base.Load(services); 
+        base.Load(services);
         services.AddSingleton<IService, ServiceImpl2>();
     }
 }
